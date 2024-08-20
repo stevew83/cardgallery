@@ -10,6 +10,5 @@ I may try to make PSA and other graded cards contain relevant information.
 Right now, card grades are estimated and of course, there is no way of knowing a raw
 card's actual grade.
 
-for deployment on streamlit, ensure paths are absolute. For example:
-/cardgallery/sportscards.csv
-/trading_card_gallery.py
+A lot of work left to do such as removing horizontal bars above and below cards. 
+App doesn't work well on mobile yet.
