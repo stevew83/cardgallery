@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 # Load the default CSV file
-default_csv_path = r"C:\Users\User\Desktop\python web project\static\sportscards.csv"
+default_csv_path = "sportscards.csv"
 default_df = pd.read_csv(default_csv_path)
 
 # Function to extract the last name from the "Name" column
