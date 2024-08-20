@@ -1,5 +1,5 @@
 project description:
-I intend to use a website to store and display some cards.
+I intend to use a website to store and display some cards. It will be deployed on streamlit.io
 Cards are grouped in to 9 card groups and displayed in 3x3 grids.
 For example, my first group is vintage hockey. My second is late 19th early 20th
 century Non Sports. But card categories can have any number of cards. If a category has 50
