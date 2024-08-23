@@ -33,44 +33,44 @@ st.markdown("""
    <style>
          
        .flip-card {
-        background-color: transparent;
-        width: 200px; /* Adjusted width */
-        height: 300px; /* Adjusted height */
-        perspective: 1000px;
-        margin: 10px;
-        display: inline-block;
-    }
-    .flip-card-inner {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        text-align: center;
-        transition: transform 0.8s;
-        transform-style: preserve-3d;
-        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    }
-    .flip-card:hover .flip-card-inner {
-        transform: rotateY(180deg);
-    }
-    .flip-card-front, .flip-card-back {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        -webkit-backface-visibility: hidden;
-        backface-visibility: hidden;
-    }
-    .flip-card-front img, .flip-card-back img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain; /* Ensure the image covers the container without distortion */
-    }
-    .flip-card-front {
-        background-color: transparent; /* Remove or set to transparent */
-    }
-    .flip-card-back {
-        background-color: transparent; /* Remove or set to transparent */
-        transform: rotateY(180deg);
-    }
+    background-color: transparent;
+    width: 200px; /* Adjusted width */
+    height: 300px; /* Adjusted height */
+    perspective: 1000px;
+    margin: 10px;
+    display: inline-block;
+}
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+.flip-card-front img, .flip-card-back img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Fill the container while maintaining the aspect ratio */
+}
+.flip-card-front {
+    background-color: transparent;
+}
+.flip-card-back {
+    background-color: transparent;
+    transform: rotateY(180deg);
+}
     
     .chart-container {
         display: flex;
