@@ -222,6 +222,10 @@ with col2:
     ax.set_ylabel('Number of Cards')
     st.pyplot(fig)
 
+
+
+st.markdown("<h2 style='text-align: center;'>Card Gallery</h2>", unsafe_allow_html=True)
+
 # Pagination and card gallery
 items_per_page = 9
 total_items = len(filtered_df)
@@ -235,7 +239,6 @@ else:
     start_index = 0
     end_index = total_items
 
-st.markdown("<h2 style='text-align: center;'>Card Gallery</h2>", unsafe_allow_html=True)
 current_page_df = filtered_df.iloc[start_index:end_index]
 
 for i in range((len(current_page_df) + 2) // 3):
