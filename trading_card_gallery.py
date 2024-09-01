@@ -231,7 +231,10 @@ with col2:
     st.pyplot(fig)
 
 
+# Add divider above Card Gallery title
+st.divider()
 
+# Card Gallery title
 st.markdown("<h2 style='text-align: center;'>Card Gallery</h2>", unsafe_allow_html=True)
 
 # Pagination and card gallery
