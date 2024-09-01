@@ -144,19 +144,27 @@ with st.sidebar:
 
 
 
-# Search and filter UI
-search_query = st.text_input("Search by Name, Year, or Set")
-selected_category = st.selectbox("Filter by Category", options=["All"] + sorted(df['Category'].unique()))
-sort_option = st.selectbox(
-    "Sort by",
-    options=[
-        "Value (High to Low)",
-        "Value (Low to High)",
-        "Year (Latest to Earliest)",
-        "Year (Earliest to Latest)",
-        "Last Name (A-Z)",
-        "Last Name (Z-A)"
-    ]) # Your existing sort options
+# Create columns with buffer space on the sides
+col1, col2, col3 = st.columns([3, 2, 2])
+
+with col1:
+    search_query = st.text_input("Search", "")  # Shortened label
+
+with col2:
+    selected_category = st.selectbox("Category", options=["All"] + sorted(df['Category'].unique()))  # Shortened label
+
+with col3:
+    sort_option = st.selectbox(
+        "Sort",
+        options=[
+            "Value (High-Low)",
+            "Value (Low-High)",
+            "Year (New-Old)",
+            "Year (Old-New)",
+            "Name (A-Z)",
+            "Name (Z-A)"
+        ]  # Shortened options
+    )
 
 # Filter the DataFrame based on the selected category and search query
 filtered_df = df.copy()
@@ -171,37 +179,37 @@ if search_query:
     ]
 
 # Sort the DataFrame based on the selected sort option
-if sort_option == "Value (High to Low)":
+if sort_option == "Value (High-Low)":
     filtered_df = filtered_df.sort_values(by='Approx Value', ascending=False)
-elif sort_option == "Value (Low to High)":
+elif sort_option == "Value (Low-High)":
     filtered_df = filtered_df.sort_values(by='Approx Value', ascending=True)
-elif sort_option == "Year (Latest to Earliest)":
+elif sort_option == "Year (New-Old)":
     filtered_df = filtered_df.sort_values(by='Year', ascending=False)
-elif sort_option == "Year (Earliest to Latest)":
+elif sort_option == "Year (Old-New)":
     filtered_df = filtered_df.sort_values(by='Year', ascending=True)
-elif sort_option == "Last Name (A-Z)":
+elif sort_option == "Name (A-Z)":
     filtered_df['Last Name'] = filtered_df['Name'].apply(extract_last_name)
     filtered_df = filtered_df.sort_values(by='Last Name', ascending=True)
-elif sort_option == "Last Name (Z-A)":
+elif sort_option == "Name (Z-A)":
     filtered_df['Last Name'] = filtered_df['Name'].apply(extract_last_name)
     filtered_df = filtered_df.sort_values(by='Last Name', ascending=False)
-
 
 # Display summary statistics
 total_cards = len(filtered_df)
 highest_value_card = filtered_df.loc[filtered_df['Approx Value'].idxmax()] if total_cards > 0 else None
 average_value = filtered_df['Approx Value'].mean()
 
-summary_df = pd.DataFrame({
-    "Statistic": ["Total Cards", "Highest Value Card", "Average Value"],
-    "Result": [
-        total_cards,
-        f"{highest_value_card['Year']} {highest_value_card['Set']} - {highest_value_card['Name']} (${highest_value_card['Approx Value']})" if highest_value_card is not None else "N/A",
-        f"${average_value:.2f}" if total_cards > 0 else "N/A"
-    ]
-})
+# Create a markdown formatted string
+summary_text = f"""
+**Summary Statistics**
 
-st.table(summary_df)
+- **Total Cards:** {total_cards}
+- **Highest Value Card:** {f"{highest_value_card['Year']} {highest_value_card['Set']} - {highest_value_card['Name']} (${highest_value_card['Approx Value']})" if highest_value_card is not None else "N/A"}
+- **Average Value:** {f"${average_value:.2f}" if total_cards > 0 else "N/A"}
+"""
+
+# Display the markdown text
+st.markdown(summary_text)
 
 # Create charts
 col1, col2 = st.columns(2)
